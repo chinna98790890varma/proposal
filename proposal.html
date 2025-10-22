@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message for Maddy</title>
+    <style>
+        /* Base Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background-color: #f7f7f7;
+            overflow: hidden; 
+            transition: background-color 0.5s ease;
+        }
+
+        /* General Container Styling */
+        .page-container {
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            background-color: white;
+            max-width: 500px;
+            width: 90%;
+            box-sizing: border-box;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        /* --- PAGE 1: INTRO STYLE --- */
+        #introPage {
+            background-color: #e0f7fa; /* Light cyan for a positive vibe */
+            border: 3px solid #00bcd4;
+        }
+
+        #introPage h1 {
+            color: #00bcd4;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        #introPage p {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* --- PAGE 2: PROPOSAL STYLE --- */
+        #proposalPage {
+            display: none; /* Starts hidden */
+            opacity: 0;
+            background-color: white;
+            border: 4px solid #ff69b4;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .photo-frame {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+            animation: pulse 2s infinite alternate;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #proposalPage h1 {
+            color: #ff69b4;
+            font-size: 2.8em;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        #proposalPage h2 {
+            color: #4a4a4a;
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .proposal-text {
+            font-size: 1.6em;
+            color: #8b0000;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .proposal-text span {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* --- BUTTON STYLING --- */
+        .button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px #e05c9a;
+            transition: all 0.15s ease;
+            letter-spacing: 1px;
+        }
+        
+        #introPage .button {
+            background-color: #00bcd4;
+            box-shadow: 0 6px #0097a7;
+        }
+
+        #introPage .button:active {
+            box-shadow: 0 0 #0097a7;
+            transform: translateY(6px);
+        }
+
+        .button:active {
+            box-shadow: 0 0 #e05c9a;
+            transform: translateY(6px);
+        }
+
+        /* --- ANIMATIONS (Hearts & Pulse) --- */
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            transform: rotate(-45deg);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0;
+            animation: float-up 6s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { top: 0; left: 10px; }
+
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(-45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container" id="introPage">
+        <h1>Hi Maddy!</h1>
+        <p>Before you see this special message, take a deep breath, smile, and remember that whatever this is, it's meant with all the love and happiness in the world.</p>
+        <p>I hope this makes your day amazing.</p>
+        <button class="button" onclick="showProposal()">Click to View Your Message</button>
+    </div>
+
+    <div class="page-container" id="proposalPage">
+        <div class="photo-frame">
+            <img src="vii.jpg" alt="Maddy's Photo">
+        </div>
+        
+        <h2>My Dearest</h2>
+        <h1>Maddy,</h1>
+
+        <div class="proposal-text" id="proposalText">
+            <span>From the moment i met you,</span>
+            <span>My world began to make sense.</span>
+            <span>Every dream i have now starts and ends with you...</span>
+            <span>And i can't imagine my forever without you.</span>
+        </div>
+        
+        <button class="button" onclick="celebrate()">Say Yes!</button>
+    </div>
+
+    <script>
+        const introPage = document.getElementById('introPage');
+        const proposalPage = document.getElementById('proposalPage');
+        const proposalTextSpans = document.getElementById('proposalText').children;
+
+        // Function to move from Intro to Proposal
+        function showProposal() {
+            // 1. Start fade-out of the intro page
+            introPage.style.opacity = 0;
+            introPage.style.transform = 'scale(0.9)';
+
+            // 2. After fade-out, switch visibility and fade in the proposal
+            setTimeout(() => {
+                introPage.style.display = 'none';
+                
+                // Show the proposal page
+                proposalPage.style.display = 'block';
+                
+                // Trigger the fade-in and scaling
+                setTimeout(() => {
+                    proposalPage.style.opacity = 1;
+                    proposalPage.style.transform = 'scale(1)';
+
+                    // Start the staggered text reveal
+                    revealProposalText();
+                    
+                    // Start the floating hearts animation
+                    createHearts();
+                }, 50); // Small delay to ensure display:block takes effect
+                
+            }, 1000); // Wait 1 second for the fade-out transition
+        }
+
+        // Function to stagger the proposal text reveal
+        function revealProposalText() {
+            // Use proposalTextSpans.length to handle the 5 lines of text
+            for (let i = 0; i < proposalTextSpans.length; i++) {
+                setTimeout(() => {
+                    proposalTextSpans[i].style.opacity = 1;
+                    proposalTextSpans[i].style.transform = 'translateY(0)';
+                }, i * 1000); // 1-second delay between each line
+            }
+        }
+
+        // Function for Floating Hearts
+        function createHearts() {
+            const numHearts = 15;
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random starting position and animation delay
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDelay = `${Math.random() * 6}s`;
+                
+                document.body.appendChild(heart);
+            }
+        }
+
+        // Function to Run on 'Say Yes!' Click
+        function celebrate() {
+            // Change the text to a celebration message
+            document.getElementById('proposalText').innerHTML = 
+                '<span>**YES!** I love you so much, Maddy! ❤️</span>';
+            
+            // Optional: Hide the button after click
+            document.querySelector('#proposalPage .button').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
